@@ -1,0 +1,12 @@
+def isBalanced(s):
+    stack = []
+    pairs = {')':'(', ']':'[', '}':'{'}
+    for c in s:
+        if c in '([{':
+            stack.append(c)
+        elif c in ')]}':
+            if not stack or stack.pop() != pairs[c]:
+                return "NO"
+    return "YES" if not stack else "NO"
+strings = ["{[()]}", "{[(])}", "{{[[(())]]}}"]
+print([isBalanced(s) for s in strings])  # ['YES', 'NO', 'YES']
