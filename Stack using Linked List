@@ -1,0 +1,37 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class StackLinkedList:
+    def __init__(self):
+        self.top = None
+        self.count = 0
+
+    def push(self, x):
+        node = Node(x)
+        node.next = self.top
+        self.top = node
+        self.count += 1
+
+    def pop(self):
+        if self.top:
+            self.top = self.top.next
+            self.count -= 1
+
+    def peek(self):
+        return self.top.data if self.top else -1
+
+    def isEmpty(self):
+        return self.top is None
+
+    def size(self):
+        return self.count
+s = StackLinkedList()
+s.push(5)
+s.push(3)
+s.push(4)
+print(s.peek())  
+s.pop()
+print(s.size())  
+print(s.isEmpty())  
