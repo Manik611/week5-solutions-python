@@ -1,0 +1,33 @@
+class StackArray:
+    def __init__(self, n):
+        self.stack = [0]*n
+        self.top = -1
+        self.size = n
+
+    def push(self, x):
+        if self.top < self.size - 1:
+            self.top += 1
+            self.stack[self.top] = x
+
+    def pop(self):
+        if self.top != -1:
+            self.top -= 1
+
+    def peek(self):
+        if self.top != -1:
+            return self.stack[self.top]
+        return -1
+
+    def isEmpty(self):
+        return self.top == -1
+
+    def isFull(self):
+        return self.top == self.size - 1
+
+stack = StackArray(3)
+stack.push(5)
+stack.push(3)
+print(stack.peek())  
+stack.pop()
+print(stack.isEmpty()) 
+print(stack.isFull()) 
