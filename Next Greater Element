@@ -1,0 +1,12 @@
+def nextGreaterElement(arr):
+    n = len(arr)
+    nge = [-1]*n
+    stack = []
+    for i in range(n-1, -1, -1):
+        while stack and stack[-1] <= arr[i]:
+            stack.pop()
+        nge[i] = stack[-1] if stack else -1
+        stack.append(arr[i])
+    return nge
+
+print(nextGreaterElement([1,3,2,4])) 
