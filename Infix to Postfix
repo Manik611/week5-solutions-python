@@ -1,0 +1,27 @@
+def infixToPostfix(exp):
+    stack = []
+    postfix = ''
+    prec = {'^':3, '*':2, '/':2, '+':1, '-':1}
+    for c in exp:
+        if c.isalnum():
+            postfix += c
+        elif c == '(':
+            stack.append(c)
+        elif c == ')':
+            while stack and stack[-1] != '(':
+                postfix += stack.pop()
+            stack.pop()
+        else:
+            while stack and stack[-1] != '(':
+                top = stack[-1]
+                if (prec.get(c,0) < prec.get(top,0)) or (prec.get(c,0) == prec.get(top,0) and c != '^'):
+                    postfix += stack.pop()
+                else:
+                    break
+            stack.append(c)
+    while stack:
+        postfix += stack.pop()
+    return postfix
+print(infixToPostfix("a*(b+c)/d"))  
+print(infixToPostfix("a+b*c+d"))    
+print(infixToPostfix("(a+b)*(c+d)"))
